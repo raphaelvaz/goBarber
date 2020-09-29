@@ -1,8 +1,8 @@
 <h1 align="center">GoBarber</h1>
 
 <p align="center">
-  <img alt="Dashboard" src="https://github.com/raphaelvaz/goBarber/blob/master/.github/gobarberlogon.png" width="473px" />
-  <img alt="Repostory" src="https://github.com/raphaelvaz/goBarber/blob/master/.github/gobarbersignup.png" width="473px" />
+  <img alt="Dashboard" src="https://github.com/raphaelvaz/goBarber/blob/master/.github/gobarberlogon.png" width="460px" />
+  <img alt="Repostory" src="https://github.com/raphaelvaz/goBarber/blob/master/.github/gobarbersignup.png" width="460px" />
 </p>
 
 ## Sobre
