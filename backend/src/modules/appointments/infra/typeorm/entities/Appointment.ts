@@ -1,11 +1,12 @@
-import { Entity, 
-    Column,PrimaryGeneratedColumn, 
-    CreateDateColumn, 
-    UpdateDateColumn, 
-    ManyToOne, 
+import {
+    Entity,
+    Column, PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn,
+    ManyToOne,
     JoinColumn
 } from 'typeorm';
-import User from './User';
+import User from '@modules/users/infra/typeorm/entities/User';
 
 //Data Mapper pattern
 @Entity('appointments')
@@ -17,7 +18,7 @@ class Appointment {
     provider_id: string;
 
     @ManyToOne(() => User)
-    @JoinColumn({ name: 'provider_id'})
+    @JoinColumn({ name: 'provider_id' })
     provider: User;
 
     @Column('timestamp with time zone')

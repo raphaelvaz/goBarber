@@ -23,18 +23,24 @@
         "prettier"
     ],
     "rules": {
+        "prettier/prettier": "error",
+        "@typescript-eslint/interface-name-prefix": [
+            "error",
+            {
+                "prefixWithI": "always"
+            }
+        ],
         "import/extensions": [
             "error",
             "ignorePackages",
             {
-              "ts": "never"
+                "ts": "never"
             }
-          ],
-          "prettier/prettier": "error"
+        ],
     },
     "settings": {
         "import/resolver": {
-          "typescript": {}
+            "typescript": {}
         }
-      }
+    }
 }
