@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export default class CreateAppointments1598640138139 implements MigrationInterface {
 
@@ -19,17 +19,17 @@ export default class CreateAppointments1598640138139 implements MigrationInterfa
                         type: 'varchar',
                     },
                     {
-                        name:'date',
-                        type:'timestamp with time zone',
+                        name: 'date',
+                        type: 'timestamp with time zone',
                     },
                     {
-                        name:'created_at',
-                        type:'timestamp',
+                        name: 'created_at',
+                        type: 'timestamp',
                         default: 'now()',
                     },
                     {
-                        name:'updated_at',
-                        type:'timestamp',
+                        name: 'updated_at',
+                        type: 'timestamp',
                         default: 'now()',
                     },
                 ],
@@ -38,7 +38,7 @@ export default class CreateAppointments1598640138139 implements MigrationInterfa
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.dropTable('appointments');
+        await queryRunner.dropTable('appointments');
     }
 
 }
