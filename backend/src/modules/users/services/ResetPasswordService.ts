@@ -3,7 +3,7 @@ import { isAfter, addHours } from 'date-fns';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
+import IHashProvider from '@modules/users/infra/providers/HashProvider/models/IHashProvider';
 
 import AppError from '@shared/errors/AppError';
 

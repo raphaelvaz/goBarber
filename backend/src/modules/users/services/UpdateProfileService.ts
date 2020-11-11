@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import IHashProvider from '@modules/users/providers/HashProvider/implementations/BCryptHashProvider';
+import IHashProvider from '@modules/users/infra/providers/HashProvider/implementations/BCryptHashProvider';
 
 
 import User from '@modules/users/infra/typeorm/entities/User';
