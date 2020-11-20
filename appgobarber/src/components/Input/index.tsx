@@ -1,4 +1,4 @@
-import React,{ useEffect, useRef, ForwardRefRenderFunction, useImperativeHandle, forwardRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, ForwardRefRenderFunction, useImperativeHandle, forwardRef, useState, useCallback } from 'react';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 
@@ -7,6 +7,7 @@ import { Container, TextInput, Icon } from './styles';
 interface InputProps extends TextInputProps {
   name: string;
   icon: string;
+  containerStyle?: {};
 }
 
 interface InputValueReference {
@@ -17,7 +18,7 @@ interface InputRefe {
   focus(): void;
 }
 
-const Input:ForwardRefRenderFunction<InputRefe,InputProps> = ({ name, icon, ...rest }, ref) => {
+const Input: ForwardRefRenderFunction<InputRefe, InputProps> = ({ name, icon, containerStyle = {}, ...rest }, ref) => {
   const inputElementRef = useRef<any>(null);
 
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
@@ -44,36 +45,36 @@ const Input:ForwardRefRenderFunction<InputRefe,InputProps> = ({ name, icon, ...r
 
   useEffect(() => {
     registerField<string>({
-      name:fieldName,
+      name: fieldName,
       ref: inputValueRef.current,
       path: 'value',
       setValue(ref: any, value) {
         inputValueRef.current.value = value;
         inputElementRef.current.setNativeProps({ text: value })
       },
-      clearValue(){
+      clearValue() {
         inputValueRef.current.value = '';
         inputElementRef.current.clear();
       },
     })
-  },[fieldName, registerField]);
+  }, [fieldName, registerField]);
 
-  return(
-  <Container isFocused={isFocused} isErrored={!!error} >
-    <Icon name={icon} size={20} color={isFilled || isFocused ? '#ff9000' : '#666360'} />
-    <TextInput
-    ref={inputElementRef}
-    keyboardAppearance='dark'
-    placeholderTextColor='#666360'
-    defaultValue={defaultValue}
-    onFocus={handleInputFocus}
-    onBlur={handleInputBlur}
-    onChangeText={value => {
-      inputValueRef.current.value = value;
-    }}
-    {... rest}
-    />
-  </Container>
+  return (
+    <Container style={containerStyle} isFocused={isFocused} isErrored={!!error} >
+      <Icon name={icon} size={20} color={isFilled || isFocused ? '#ff9000' : '#666360'} />
+      <TextInput
+        ref={inputElementRef}
+        keyboardAppearance='dark'
+        placeholderTextColor='#666360'
+        defaultValue={defaultValue}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        onChangeText={value => {
+          inputValueRef.current.value = value;
+        }}
+        {...rest}
+      />
+    </Container>
   );
 };
 

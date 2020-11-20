@@ -33,33 +33,35 @@ const SignIn: React.FC = () => {
 
   const handleSignIn = useCallback(async (data: SignInFormData) => {
     try {
-        formRef.current?.setErrors({});
+      formRef.current?.setErrors({});
 
-        const schema = Yup.object().shape({
-            email: Yup.string().required('Email obrigatório').email('Digite um e-mail válido'),
-            password: Yup.string().required('Senha Obrigatória'),
-        })
-        await schema.validate(data, {
-            abortEarly: false,
-        });
+      const schema = Yup.object().shape({
+        email: Yup.string().required('Email obrigatório').email('Digite um e-mail válido'),
+        password: Yup.string().required('Senha Obrigatória'),
+      })
+      await schema.validate(data, {
+        abortEarly: false,
+      });
 
-        await signIn({
-            email: data.email,
-            password: data.password,
-        });
+      await signIn({
+        email: data.email,
+        password: data.password,
+      });
+
+
     } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-            const errors = getValidationErrors(err);
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
 
-            formRef.current?.setErrors(errors);
+        formRef.current?.setErrors(errors);
+        console.log(err);
+        return;
+      }
 
-            return;
-        }
-
-        Alert.alert('Erro de autenticação',
+      Alert.alert('Erro de autenticação',
         'Ocorreu um erro ao fazer login, cheque as credenciais.');
     }
-}
+  }
     , [signIn]);
 
 
@@ -81,33 +83,33 @@ const SignIn: React.FC = () => {
             </View>
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input
-              autoCorrect={false}
-              autoCapitalize='none'
-              keyboardType='email-address'
-              name='email'
-              icon='mail'
-              placeholder='E-mail'
-              returnKeyType='next'
-              onSubmitEditing={() => {
-                passwordInputRef.current?.focus();
-              }}
+                autoCorrect={false}
+                autoCapitalize='none'
+                keyboardType='email-address'
+                name='email'
+                icon='mail'
+                placeholder='E-mail'
+                returnKeyType='next'
+                onSubmitEditing={() => {
+                  passwordInputRef.current?.focus();
+                }}
               />
               <Input
-              ref={passwordInputRef}
-              name='password'
-              icon='lock'
-              placeholder='Senha'
-              secureTextEntry
-              returnKeyType='send'
-              onSubmitEditing={() => {
-                formRef.current?.submitForm();
-              }}
+                ref={passwordInputRef}
+                name='password'
+                icon='lock'
+                placeholder='Senha'
+                secureTextEntry
+                returnKeyType='send'
+                onSubmitEditing={() => {
+                  formRef.current?.submitForm();
+                }}
               />
             </Form>
             <Button
-                  onPress={() => {
-                    formRef.current?.submitForm();
-                  }}>Entrar</Button>
+              onPress={() => {
+                formRef.current?.submitForm();
+              }}>Entrar</Button>
             <ForgotPassword onPress={() => { }}>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
             </ForgotPassword>
